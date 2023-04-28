@@ -9,22 +9,20 @@
 
     <div class="center">
         <h1 class="title"><strong>Kbtu Core</strong></h1>
-        <form method="post">
+        <form>
             <div class="txt_field">
-                <input type="text" required [(ngModel)]="loginObj.username">
+                <input type="text" [(ngModel)]="loginObj.username" name="username" required>
                 <span></span>
                 <label>Username</label>
             </div>
             <div class="txt_field">
-                <input type="password" required [(ngModel)]="loginObj.password">
+                <input type="password" [(ngModel)]="loginObj.password" name="password" required>
                 <span></span>
                 <label>Password</label>
             </div>
-            <div class="pass">Forgot Password?</div>
-            <!-- <button (click)="onLogin()" type="submit" value="Log In"></button> -->
-            <input (click)="onLogin()" type="submit" value="Log In">
+            <input type="submit" (click)="onLogin()" value="Log In">
             <div class="signup_link">
-                <a routerLink='/signup'>Sign up</a>
+                <a routerLink="/signup">Sign up</a>
             </div>
         </form>
     </div>

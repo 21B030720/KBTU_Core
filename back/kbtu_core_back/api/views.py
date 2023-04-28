@@ -19,6 +19,10 @@ from api.serializers import *
 #     serializer_class = TutorialSerializer
 
 class FacultyClass(APIView):
+    def get(self, request, format=None):
+        companies = Faculty.objects.all()
+        serializer = FacultySerializer(companies, many=True)
+        return Response(serializer.data)
     def post(self, request, format=None):
         serializer = FacultySerializer(data = request.data)
         if(serializer.is_valid()):

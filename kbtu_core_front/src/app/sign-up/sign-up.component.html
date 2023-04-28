@@ -8,31 +8,25 @@
 <body>
     <div class="center">
         <h1 class="title"><strong>Kbtu Core</strong></h1>
-        <form method="post">
+        <form>
             <div class="txt_field">
-                <input type="text" [(ngModel)]="newUser">  
+                <input type="text" [(ngModel)]="signupObj.username" name="username" required>  
                 <span></span>
                 <label>Username</label>
             </div>
-            <div class="txt_field" >
-                <input type="password" [(ngModel)]="newPassword">
+            <div class="txt_field">
+                <input type="password" [(ngModel)]="signupObj.password" name="password" required>
                 <span></span>
                 <label>Password</label>
             </div>
-            <div class="txt_field" >
-                <input type="password">
+            <div class="txt_field">
+                <input type="password" name="confirmPassword" required>
                 <span></span>
                 <label>Confirm Password</label>
             </div>
-            <div class="txt_field">
-                <input type="imagelink" required>
-                <span></span>
-                <label>Image Link</label>
-            </div>
-            <button (click)="onSignup()">Sign In</button>
+            <input type="submit" (click)="onSignup()" value="Sign Up">
         </form>
     </div>
-
 </body>
 
 </html>

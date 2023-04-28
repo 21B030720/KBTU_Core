@@ -11,6 +11,7 @@ import { DatabaseService } from '../database.service';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent {
+
   faculties: Faculty[] |undefined;
   // data1s: Tutorial[] = [];
   // albums: DataLenta[] |undefined;
@@ -27,7 +28,7 @@ export class TopBarComponent {
     this.loaded = false;
     this.service.getFaculties().subscribe((albums: Faculty[]) =>{
       this.faculties = albums;
-      this.loaded = true;
     });
   }
+
 }

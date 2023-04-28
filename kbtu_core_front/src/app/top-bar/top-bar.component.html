@@ -17,10 +17,19 @@
           <mat-expansion-panel-header class="textt">
               Schools
           </mat-expansion-panel-header>
-          <mat-nav-list *ngFor="let fac of faculties">
-            
+          <mat-nav-list>
+              
               <a mat-list-item routerLink="#">
-                  <mat-icon class="icon">{{fac.icon}}</mat-icon><span class="textt">{{fac.name}}</span>
+                  <mat-icon class="icon">computer</mat-icon><span class="textt">Information Systems</span>
+              </a>
+              <a mat-list-item routerLink="#">
+                  <mat-icon class="icon">build</mat-icon><span class="textt">Oil and Gas</span>
+              </a>
+              <a mat-list-item routerLink="#">
+                <mat-icon class="icon">card_travel</mat-icon><span class="textt">Business</span>
+              </a>
+              <a mat-list-item routerLink="#">
+                <mat-icon class="icon">account_balance</mat-icon><span class="textt">International Economy</span>
               </a>
           </mat-nav-list>
       </mat-expansion-panel>
