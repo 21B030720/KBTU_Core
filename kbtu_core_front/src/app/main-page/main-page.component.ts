@@ -8,19 +8,7 @@ import { Component } from '@angular/core';
   <child-component (messageEvent)="receiveMessage($event)"></child-component>`
 
 })
-export class MainPageComponent implements OnInit{
-  allow: Boolean;
-  constructor(){
-    this.allow = User;
-    
-  }
-  ngOnInit(): void {
-    this.allow = User;
-  }
-  showButton(){
-    this.allow = User;
-  }
-  receiveMessage($event: any){
-    this.allow = $event;
-  }
+export class MainPageComponent {
+
+ 
 }

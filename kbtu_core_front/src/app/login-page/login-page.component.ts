@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   
-  styleUrls: ['./login-page.component.css'],,
+  styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent implements OnInit {
   signupUsers: any[] = [];
