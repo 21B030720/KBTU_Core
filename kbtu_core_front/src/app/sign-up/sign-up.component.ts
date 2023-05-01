@@ -24,6 +24,7 @@ export class SignUpComponent {
   }
 
   onSignup() {
+
     const savedUsers = localStorage.getItem('signupUsers');
     let signupUsers = [];
     if (savedUsers) {
@@ -37,4 +38,5 @@ export class SignUpComponent {
       imagelink: ''
     };
   }  
+
 }

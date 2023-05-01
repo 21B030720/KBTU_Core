@@ -22,7 +22,9 @@ export interface Category{
     }
 
 }
-export var User: boolean = false;
+
+
+export var User: boolean = true;
 
 export function Arslan(){
     User = !User;
