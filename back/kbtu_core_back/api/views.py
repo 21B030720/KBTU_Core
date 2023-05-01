@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import JsonResponse
 import json
 
 from api.models import Tutorial
@@ -17,7 +18,6 @@ from api.serializers import *
 # class TutorialDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Tutorial.objects.all()
 #     serializer_class = TutorialSerializer
-
 class FacultyClass(APIView):
     def get(self, request, format=None):
         companies = Faculty.objects.all()
@@ -40,8 +40,8 @@ class CategoryClass(APIView):
 class TutorialClass(APIView):
     def get(self, request, format=None, id = 0):
         if(id == 0):
-            companies = Tutorial.objects.all()
-            serializer = TutorialSerializer(companies, many=True)
+            tutorials = Tutorial.objects.all()
+            serializer = TutorialSerializer(tutorials, many=True)
             return Response(serializer.data)
         else:
             company = Tutorial.objects.get(id=id)
@@ -70,3 +70,9 @@ class TutorialClass(APIView):
     #     company = Tutorial.objects.get(id=id)
     #     company.delete()
     #     return Response(status=status.HTTP_204_NO_CONTENT)
+def a1(request, id):
+    faculty = Faculty.objects.get(id = id)
+    category = Category.objects.filter(faculty = faculty)
+    tutorial = Tutorial.objects.filter(category__in = category)
+    serializer = TutorialSerializer(tutorial, many=True)
+    return JsonResponse(serializer.data, safe=False)
