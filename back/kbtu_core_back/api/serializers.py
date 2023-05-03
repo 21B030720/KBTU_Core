@@ -4,7 +4,7 @@ from api.models import Category, Tutorial, Admin, Faculty
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
-        fields = ('id', 'name')
+        fields = ('id', 'name','icon')
 
 class CategorySerializer(serializers.ModelSerializer):
     faculty = FacultySerializer()
