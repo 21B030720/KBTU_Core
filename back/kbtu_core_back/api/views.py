@@ -60,3 +60,4 @@ def a1(request, id):
     serializer = TutorialSerializer(tutorial, many=True)
     return JsonResponse(serializer.data, safe=False)
 
+
