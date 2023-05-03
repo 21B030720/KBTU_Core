@@ -10,6 +10,7 @@ import { Tutorial, User } from '../models';
 import { datas } from '../data-lenta';
 import { MainPageComponent } from '../main-page/main-page.component';
 import { Input, EventEmitter } from '@angular/core';
+import { DatabaseConnectionService } from '../database-connection.service';
 
 @Component({
   selector: 'app-lenta',
@@ -24,7 +25,7 @@ export class LentaComponent {
 
   loaded: boolean;
 
-  constructor(private service: DatabaseService){
+  constructor(private service: DatabaseService, private filterService: DatabaseConnectionService){
     this.newFilter = "";
     this.loaded = true;
   }
@@ -32,6 +33,9 @@ export class LentaComponent {
     // this.albums = datas;
     //    !!!!!      FOR WORK WITH JSON UNCOMMENT TEXT BELLOW   !!!!!!! 
     this.Search();
+    this.filterService.selectedProduct$.subscribe((value) => {
+      this.albums = value
+    });
   }
 
   getAlbums(){

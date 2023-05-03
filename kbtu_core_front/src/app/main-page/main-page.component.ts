@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
+import { DatabaseConnectionService } from '../database-connection.service';
 
 @Component({
   selector: 'app-main-page',
@@ -11,15 +12,17 @@ import { User } from '../models';
 })
 export class MainPageComponent implements OnInit{
   allow: Boolean;
-  constructor(){
-    this.allow = User;
-    
+  constructor(private filterService: DatabaseConnectionService){
+    this.allow = false
   }
   ngOnInit(): void {
-    this.allow = User;
+    this.filterService.selectedAllowance.subscribe((value) => {
+      // console.log(value);
+      this.allow = value
+    });
   }
   showButton(){
-    this.allow = User;
+    // this.allow = User;
   }
   receiveMessage($event: any){
     this.allow = $event;
