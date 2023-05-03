@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 // import logic.js
 @Component({
@@ -6,7 +6,17 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './creator.component.html',
   styleUrls: ['./creator.component.css']
 })
-export class CreatorComponent {
+export class CreatorComponent implements OnInit{
+  newHtml: string = "";
+  constructor()
+  {}
+  ngOnInit(): void 
+  {}
+
+  Appload()
+  {
+    
+  }
   Add(){
     // remove if there is
     var deleting = document.getElementById(`blablabla`) as HTMLElement | null;
