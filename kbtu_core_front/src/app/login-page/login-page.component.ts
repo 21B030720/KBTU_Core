@@ -3,6 +3,7 @@ import { User } from '../models';
 import { Arslan } from '../models';
 import { MainPageComponent } from '../main-page/main-page.component';
 import { Router } from '@angular/router';
+import { DatabaseConnectionService } from '../database-connection.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginPageComponent implements OnInit {
     password: '',
   };
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private filterService: DatabaseConnectionService) {}
 
   ngOnInit(): void {
     const savedUsers = localStorage.getItem('signupUsers');
@@ -38,5 +39,9 @@ export class LoginPageComponent implements OnInit {
     } else{
       alert('Not Welcome!')
     }
+
+    // For create button
+    this.filterService.setAllowance(true);
+    
   }
 }

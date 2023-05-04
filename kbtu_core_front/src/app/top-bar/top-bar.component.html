@@ -19,7 +19,7 @@
           </mat-expansion-panel-header>
           <mat-nav-list *ngFor="let fac of faculties">
             
-              <a mat-list-item routerLink="#">
+              <a mat-list-item role="button" (click)="filter(fac.id)">
                   <mat-icon class="icon">{{fac.icon}}</mat-icon><span class="textt">{{fac.name}}</span>
               </a>
           </mat-nav-list>

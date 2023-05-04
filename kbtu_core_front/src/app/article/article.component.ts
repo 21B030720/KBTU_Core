@@ -51,7 +51,7 @@ export class ArticleComponent {
         this.art = art;
         this.loaded = true;
         var div1 = document.getElementById("article-text");
-       
+       console.log(this.art.content)
         div1!.innerHTML = this.art.content;
       });
     } )

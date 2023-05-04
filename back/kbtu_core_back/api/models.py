@@ -1,4 +1,8 @@
 from django.db import models
+# for Generic
+from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 class Faculty(models.Model):
     name = models.CharField(max_length=255)
@@ -27,6 +31,7 @@ class Admin(models.Model):
     user_name = models.CharField(max_length=255)
     password = models.CharField(max_length=70)
     img = models.TextField()
+
 
 
 
