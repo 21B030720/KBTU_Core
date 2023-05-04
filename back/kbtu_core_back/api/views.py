@@ -9,9 +9,13 @@ import json
 from api.models import Tutorial
 from api.serializers import *
 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import api_view, permission_classes
 
 
 class FacultyClass(APIView):
+    permission_classes = [AllowAny]
     def get(self, request, format=None):
         companies = Faculty.objects.all()
         serializer = FacultySerializer(companies, many=True)
@@ -23,6 +27,7 @@ class FacultyClass(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class CategoryClass(APIView):
+    permission_classes = [AllowAny]
     def post(self, request, id, format=None):
         faculty = Faculty.objects.get(id = id)
         data = json.loads(request.body)
@@ -31,6 +36,7 @@ class CategoryClass(APIView):
         serializer = CategorySerializer(category)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 class TutorialClass(APIView):
+    permission_classes = [AllowAny]
     def get(self, request, format=None, id = 0):
         if(id == 0):
             tutorials = Tutorial.objects.all()
@@ -53,7 +59,10 @@ class TutorialClass(APIView):
         tutorial = Tutorial.objects.create(title = title, author = author, category = category, img = img, like = like, content = content)
         serializer = TutorialSerializer(tutorial)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-def a1(request, id):
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def filter(request, id):
     faculty = Faculty.objects.get(id = id)
     category = Category.objects.filter(faculty = faculty)
     tutorial = Tutorial.objects.filter(category__in = category)

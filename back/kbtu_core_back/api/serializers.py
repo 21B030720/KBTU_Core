@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from django.db import models
 from api.models import Category, Tutorial, Admin, Faculty
+# JWT Token
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class FacultySerializer(serializers.Serializer):
     id = serializers.IntegerField()
