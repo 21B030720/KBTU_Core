@@ -1,11 +1,37 @@
-<div class="div_buttons">
-    <button class="button_above">Appload</button>
-    <button class="button_above">Clear</button>
-</div>
+
 <div class="div_main">
+ 
+   
     <div id="div_in">
         <!-- <input id="input_1"  type="text" placeholder="New Task"> -->
+        <form>
+            <div class="txt_field">
+                <input type="text" [(ngModel)]="art.title" name="title" required>
+                <span></span>
+                <label>Title</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" [(ngModel)]="art.imgUrl" name="imgUrl" required>
+                <span></span>
+                <label>Image URL</label>
+            </div>
+            
+            
+            <mat-form-field  appearance="fill" id="contentf">
+                <mat-label>Article content</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          cdkAutosizeMaxRows="50" 
+                          id="contentf"
+                          [(ngModel)]="art.contentt" name="contentt" ></textarea>
+              </mat-form-field>
+            <input type="submit" (click)="Add()" value="add">
+        </form>
 
+
+        <!--
         <mat-form-field class="col-md-12 mat_in_size" >
             <mat-label>Code</mat-label>
             <textarea id="input_1" type="text"
@@ -17,21 +43,32 @@
                       [(ngModel)] = "newHtml"
                       ></textarea>
           </mat-form-field>
-          <!-- [(ngModel)]="Somthing" name="Somthing" -->
-        <button id="button_1" type="button" class="button_1" (click)="Add()">Add</button>
+          
+        <button id="button_1" type="button" class="button_1" (click)="Add()">Add</button>-->
     </div>
     <!-- <div id="div_out">
-    </div> -->
+    </div>
     <mat-card id="div_out">
         <mat-card-header>
             <mat-card-title>Result</mat-card-title>
-            <!-- <mat-card-subtitle> 
-                One stop solution for all CS Subjects 
-            </mat-card-subtitle> -->
+            
         </mat-card-header>
         <mat-card-content >
             
       
         </mat-card-content>
-    </mat-card>
+    </mat-card> -->
+    <div  id="article">
+        <h1 id="title" *ngIf="art_out">{{art_out.title}}</h1>
+        <div  id="head-buttons-div"> 
+            <button *ngIf="art_out" mat-button id="like" class="head-button"><mat-icon class="top-icon">favorite</mat-icon></button>
+            <button *ngIf="art_out" mat-icon-button id="loginb" class="head-button"><mat-icon class="top-icon">edit</mat-icon></button>
+            <span><button *ngIf="art_out" mat-icon-button class="head-button"><mat-icon class="top-icon">delete</mat-icon></button></span>
+        </div>
+        <div id="separator"></div>
+        <img *ngIf="art_out" id="image" src={{art_out.imgUrl}} width='70%' >
+        <div id="article-text">
+            <div  class="article-p"></div>
+        </div>
+    </div>
 </div>

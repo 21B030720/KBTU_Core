@@ -12,13 +12,20 @@ import { DatabaseConnectionService } from '../database-connection.service';
 })
 export class MainPageComponent implements OnInit{
   allow: Boolean;
+  artReady:boolean;
+
   constructor(private filterService: DatabaseConnectionService){
-    this.allow = false
+    this.allow = false;
+    this.artReady=true;
   }
   ngOnInit(): void {
     this.filterService.selectedAllowance.subscribe((value) => {
       // console.log(value);
       this.allow = value
+    });
+    this.filterService.selectedReady.subscribe((value) => {
+      // console.log(value);
+      this.artReady = value
     });
   }
   showButton(){
@@ -26,5 +33,8 @@ export class MainPageComponent implements OnInit{
   }
   receiveMessage($event: any){
     this.allow = $event;
+  }
+  receiveMessageR($event: any){
+    this.artReady = $event;
   }
 }
