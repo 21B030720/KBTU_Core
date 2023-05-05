@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';  
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -27,6 +27,7 @@ import { CreatorComponent } from './creator/creator.component';
 import {MatInputModule} from '@angular/material/input'
 import { MatCardModule } from "@angular/material/card";
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { CustomInterceptor } from './custom.interceptor';
 
 
 
@@ -66,7 +67,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
