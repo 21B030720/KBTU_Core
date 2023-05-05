@@ -5,6 +5,7 @@ import { MainPageComponent } from '../main-page/main-page.component';
 import { Router } from '@angular/router';
 import { DatabaseConnectionService } from '../database-connection.service';
 import { AuthService } from '../auth.service';
+import { ArmanService } from '../arman.service';
 
 
 @Component({
@@ -21,11 +22,11 @@ export class LoginPageComponent implements OnInit {
     password: '',
   };
   loginObj: any = {
-    EmailId: '',
-    Password: '',
+    username: '',
+    password: '',
   };
 
-  constructor(private _router: Router, private filterService: DatabaseConnectionService, private accService: AuthService) {}
+  constructor(private filterService: DatabaseConnectionService, private accService: ArmanService, private route: Router) {}
 
   ngOnInit(): void {
     const savedUsers = localStorage.getItem('signupUsers');
@@ -41,7 +42,9 @@ export class LoginPageComponent implements OnInit {
     {
       debugger
       console.log('res', res);
-      localStorage.setItem('token', res.token);
+      localStorage.setItem('token', res['access']);
+      this.route.navigateByUrl('/');
+      this.filterService.setAllowance(true);
     })
     
   }
