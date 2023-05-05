@@ -12,7 +12,10 @@ import { AuthGuard } from './auth.guard';
 // import {http}
 
 const routes: Routes = [
-  {path: '', component: LentaComponent},
+  {
+    path: '', 
+    component: LentaComponent
+  },
   {path: 'login', component: LoginPageComponent},
   {path: 'signup', component: SignUpComponent},
   {path: 'creator', component: CreatorComponent},
