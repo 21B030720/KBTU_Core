@@ -115,6 +115,10 @@ form .txt_field {
     cursor: pointer;
 }
 
+#logg{
+    margin-bottom: 30px;
+}
+
 .pass:hover {
     text-decoration: underline;
 }

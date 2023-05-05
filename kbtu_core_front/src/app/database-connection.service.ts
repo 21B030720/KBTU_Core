@@ -13,8 +13,12 @@ export class DatabaseConnectionService {
   private allowance = new BehaviorSubject<any>({});
   selectedAllowance = this.allowance.asObservable();
 
+    // Allow creation
+    private ready = new BehaviorSubject<any>({});
+    selectedReady = this.ready.asObservable();
   constructor() { 
     this.allowance.next(false);
+    this.ready.next(false);
   }
 
   setProduct(product: any) {
@@ -23,5 +27,8 @@ export class DatabaseConnectionService {
 
   setAllowance(product: any) {
     this.allowance.next(product);
+  }
+  setReady(product: any) {
+    this.ready.next(product);
   }
 }
