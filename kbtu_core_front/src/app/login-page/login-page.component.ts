@@ -3,6 +3,9 @@ import { User } from '../models';
 import { Arslan } from '../models';
 import { MainPageComponent } from '../main-page/main-page.component';
 import { Router } from '@angular/router';
+import { DatabaseConnectionService } from '../database-connection.service';
+import { AuthService } from '../auth.service';
+import { ArmanService } from '../arman.service';
 
 
 @Component({
@@ -14,12 +17,16 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
   signupUsers: any[] = [];
 
+  signupObj: any = {
+    username: '',
+    password: '',
+  };
   loginObj: any = {
     username: '',
     password: '',
   };
 
-  constructor(private _router: Router) {}
+  constructor(private filterService: DatabaseConnectionService, private accService: ArmanService, private route: Router) {}
 
   ngOnInit(): void {
     const savedUsers = localStorage.getItem('signupUsers');
@@ -29,14 +36,18 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin() {
-    // debugger
-    const isUserExist = this.signupUsers.find(m => m.username == this.loginObj.username && m.password == this.loginObj.password);
-    if(isUserExist != undefined){
-      alert('Welcome!');
-      Arslan();
-      this._router.navigate(['']);
-    } else{
-      alert('Not Welcome!')
-    }
+    debugger
+
+    this.accService.onLogin(this.loginObj).subscribe((res: any) =>
+    {
+      debugger
+      console.log('res', res);
+      localStorage.setItem('token', res['access']);
+      this.route.navigateByUrl('/');
+      this.filterService.setAllowance(true);
+    })
+    
   }
+
+  
 }

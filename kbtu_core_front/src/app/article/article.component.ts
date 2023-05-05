@@ -50,11 +50,14 @@ export class ArticleComponent {
       this.albumService.getTutorial(id).subscribe((art: Tutorial) => {
         this.art = art;
         this.loaded = true;
+        var div1 = document.getElementById("article-text");
+       console.log(this.art.content)
+        div1!.innerHTML = this.art.content;
       });
     } )
+
   }
   deleteAlbum(k: number){
-   
   }
   /*
   changeAlbum(title: string, id: number, body: DataLenta){
