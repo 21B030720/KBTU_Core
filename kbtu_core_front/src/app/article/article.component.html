@@ -27,10 +27,10 @@
 <h3 *ngIf="art" id="cat" >Category: {{art.category}}</h3>
 <div  id="article">
     
-    <span *ngIf="art">{{art.author}} </span>  
+    <span *ngIf="art">{{art.author}} </span>   <span *ngIf="art"> {{art.date}}</span>
     <h1 id="title" *ngIf="art">{{art.title}}</h1>
     <div  id="head-buttons-div"> 
-        <button *ngIf="art" mat-button id="like" class="head-button" (click)="incLikes()">{{art.like}}<mat-icon class="top-icon">favorite</mat-icon></button>
+        <button *ngIf="art" mat-button id="like" class="head-button" (click)="incLikes()">{{art.likes}}<mat-icon class="top-icon">favorite</mat-icon></button>
         <button *ngIf="art" mat-icon-button id="loginb" class="head-button" routerLink="/login"><mat-icon class="top-icon">edit</mat-icon></button>
         <span><button *ngIf="art" mat-icon-button class="head-button"><mat-icon class="top-icon">delete</mat-icon></button></span>
     </div>

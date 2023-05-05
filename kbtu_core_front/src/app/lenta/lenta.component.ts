@@ -25,13 +25,13 @@ export class LentaComponent {
   loaded: boolean;
 
   constructor(private service: DatabaseService){
-    this.newFilter = "";
     this.loaded = true;
+    this.newFilter = "";
   }
   ngOnInit(): void {
     // this.albums = datas;
     //    !!!!!      FOR WORK WITH JSON UNCOMMENT TEXT BELLOW   !!!!!!! 
-    this.Search();
+    this.getAlbums();
   }
 
   getAlbums(){
@@ -41,6 +41,7 @@ export class LentaComponent {
       this.loaded = true;
     });
   }
+
 
   Search(){
     console.log(User);
@@ -66,5 +67,6 @@ export class LentaComponent {
   }
 
   
+
   
 }

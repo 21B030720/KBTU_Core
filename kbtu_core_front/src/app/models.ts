@@ -4,21 +4,12 @@ export interface Tutorial {
     "author": string,
     "img": string,
     "like": number,
-    "content": string,
-    "category":{
-        'id': number,
-        "name": string,
-        "faculty": {
-            'id': number,
-            "name": string
-        }
-    }
+    "content": string
 };
 
 export interface Faculty{
     'id': number,
-    "name": string,
-    "icon": string
+    "name": string
 };
 
 export interface Category{
@@ -26,12 +17,13 @@ export interface Category{
     "name": string,
     "faculty": {
         'id': number,
-        "name": string,
-        "icon": string
+        "name": string
     }
+
 }
 export var User: boolean = true;
 
 export function Arslan(){
     User = !User;
 }
+

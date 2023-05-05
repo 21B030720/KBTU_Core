@@ -1,5 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
+
 
 @Component({
   selector: 'app-main-page',
@@ -9,6 +11,7 @@ import { User } from '../models';
   <child-component (messageEvent)="receiveMessage($event)"></child-component>`
 
 })
+
 export class MainPageComponent implements OnInit{
   allow: Boolean;
   constructor(){
@@ -24,4 +27,5 @@ export class MainPageComponent implements OnInit{
   receiveMessage($event: any){
     this.allow = $event;
   }
+
 }

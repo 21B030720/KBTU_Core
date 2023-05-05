@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { DataLenta } from '../data-lenta';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceLentaService } from '../service-lenta.service';
-import { DatabaseService } from '../database.service';
 import { ParamMap } from '@angular/router';
 import { Data1 } from '../data1';
 import { datas } from '../data-lenta';
-import { Tutorial } from '../models';
 // import { DataLenta } from '../data-lenta';
 
 
@@ -20,11 +18,11 @@ export class ArticleComponent {
 
 
   newAlbum: DataLenta;
-  art: Tutorial;
-  aa: Tutorial|undefined;
+  art: DataLenta;
+  aa: DataLenta|undefined;
   loaded: boolean;
-  constructor(private route: ActivatedRoute, private albumService: DatabaseService ){
-    this.art={} as Tutorial;
+  constructor(private route: ActivatedRoute, private albumService: ServiceLentaService ){
+    this.art={} as DataLenta;
 
     this.loaded = true;
     this.newAlbum = {} as DataLenta;
@@ -37,26 +35,26 @@ export class ArticleComponent {
 
     this.route.paramMap.subscribe((params: ParamMap) => {
       const artIdFromRoute = Number(params.get('id'));
-      /*
       this.aa=datas.find(art => art.id === artIdFromRoute);
-      this.art = this.aa?? {}as Tutorial;*/
+      this.art = this.aa?? {}as DataLenta;
 
       const id = Number(params.get('id'));
       this.loaded = true;
 
       //    !!!!!      FOR WORK WITH JSON UNCOMMENT TEXT BELLOW   !!!!!!! 
 
-      
-      this.albumService.getTutorial(id).subscribe((art: Tutorial) => {
+      /*
+      this.albumService.getAlbum(id).subscribe((art: DataLenta) => {
         this.art = art;
         this.loaded = true;
-      });
+      });*/
     } )
   }
   deleteAlbum(k: number){
-   
+    this.albumService.deleteAlbum(k).subscribe((art: DataLenta) => {
+      console.log(art);
+    })
   }
-  /*
   changeAlbum(title: string, id: number, body: DataLenta){
     body = {
       // userId: body.userId,
@@ -67,16 +65,15 @@ export class ArticleComponent {
       img:body.img,
       content:body.content,
       category:body.category,
-      like:body.like,
+      likes:body.likes,
     } as DataLenta;
     this.albumService.changeAlbum(id, body).subscribe((art: DataLenta) => {
       console.log(art);
     })
-  }*/
-  
+  }
 
   incLikes(){
-    this.art.like=this.art.like+1;
-    console.log(this.art.like);
+    this.art.likes=this.art.likes+1;
+    console.log(this.art.likes);
   }
 }
