@@ -36,7 +36,7 @@ class CategoryClass(APIView):
         serializer = CategorySerializer(category)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 class TutorialClass(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None, id = 0):
         if(id == 0):
             tutorials = Tutorial.objects.all()
@@ -92,7 +92,7 @@ class TutorialClass(APIView):
         
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def filter(request, id):
     faculty = Faculty.objects.get(id = id)
     category = Category.objects.filter(faculty = faculty)
