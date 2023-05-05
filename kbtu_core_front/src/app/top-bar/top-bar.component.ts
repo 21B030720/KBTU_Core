@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 import { MatButton } from '@angular/material/button';
 import { MainPageComponent } from '../main-page/main-page.component';
+import { Faculty, Tutorial } from '../models';
+import { DatabaseService } from '../database.service';
+import { DatabaseConnectionService } from '../database-connection.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -11,9 +14,10 @@ import { MainPageComponent } from '../main-page/main-page.component';
 export class TopBarComponent {
 
   faculties: Faculty[] |undefined;
+  filteredTuttorials: Tutorial[] = [];
   // data1s: Tutorial[] = [];
   // albums: DataLenta[] |undefined;
-  constructor(private service: DatabaseService){
+  constructor(private service: DatabaseService, private filterService: DatabaseConnectionService){
     this.loaded = true;
   }
   loaded: boolean;
@@ -28,5 +32,4 @@ export class TopBarComponent {
       this.faculties = albums;
     });
   }
-
 }
