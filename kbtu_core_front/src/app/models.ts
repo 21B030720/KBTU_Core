@@ -13,12 +13,14 @@ export interface Tutorial {
             "name": string
         }
     }
+
 };
 
 export interface Faculty{
     'id': number,
     "name": string,
-    "icon": string
+    "icon": string,
+    'token'?: string;
 };
 
 export interface Category{
@@ -30,8 +32,13 @@ export interface Category{
         "icon": string
     }
 }
+export interface Admin{
+    'user_name': number,
+    "password": string
+}
 export var User: boolean = true;
 
 export function Arslan(){
     User = !User;
 }
+

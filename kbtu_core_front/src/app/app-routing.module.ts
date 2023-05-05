@@ -7,6 +7,8 @@ import { ArticleComponent } from './article/article.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CreatorComponent } from './creator/creator.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 // import {http}
 
 const routes: Routes = [
