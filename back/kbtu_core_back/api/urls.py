@@ -13,7 +13,7 @@ urlpatterns = [
     path('tutorial/', views.TutorialClass.as_view(), name="tutorial"),
     path('tutorial/<int:id>/', views.TutorialClass.as_view(), name="tutorial_detail"),
     path('tutorial/filter/<int:id>', views.filter, name="tutorial_filter"),
-
+    path('tutorial/like/<int:id>', views.like, name="tutorial_like"),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
