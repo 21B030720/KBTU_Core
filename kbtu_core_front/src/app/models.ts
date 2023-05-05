@@ -34,8 +34,7 @@ export interface Category{
 }
 export interface Admin{
     'user_name': number,
-    "password": string,
-    "img": string
+    "password": string
 }
 export var User: boolean = true;
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Tutorial, Category, Faculty} from './models';
+import { Tutorial, Category, Faculty, Admin} from './models';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -19,7 +19,6 @@ export class DatabaseService {
     return this.client.get<Tutorial>(`${this.BASE_URL}/api/tutorial/${id}/`);
   }
   deleteTutorial(id:number){
-    
   }
   filterTutorialByFaculty(id: number): Observable<Tutorial[]>{
     return this.client.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`);
@@ -27,4 +26,7 @@ export class DatabaseService {
   getFaculties(): Observable<Faculty[]>{
     return this.client.get<Faculty[]>(`${this.BASE_URL}/api/faculty/`);
   }
+  // getAdmin(): Observable<Admin>{
+  //   return this.client.get<Admin[]>(`${this.BASE_URL}/api/faculty/`);
+  // }
 }
