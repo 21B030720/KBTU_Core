@@ -32,7 +32,7 @@ export class AuthService {
         
     getTutorials(): Observable<Tutorial[]>{
         // debugger
-        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/`, { headers: this.headers});
+        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/`, { });
     }
     getTutorial(id: number): Observable<Tutorial>{
         return this.http.get<Tutorial>(`${this.BASE_URL}/api/tutorial/${id}/`);
@@ -40,7 +40,7 @@ export class AuthService {
     deleteTutorial(id:number){
     }
     filterTutorialByFaculty(id: number): Observable<Tutorial[]>{
-        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`, {headers: this.headers});
+        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`, {});
     }
     getFaculties(): Observable<Faculty[]>{
         return this.http.get<Faculty[]>(`${this.BASE_URL}/api/faculty/`);

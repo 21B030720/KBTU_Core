@@ -19,13 +19,13 @@ export class CustomInterceptor implements HttpInterceptor {
     // return next.handle(request);
 
 
-    const token = localStorage.getItem('token');
-    if (token) {
-      const authRequest = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${token}`)
-      });
-      return next.handle(authRequest);
-    }
+    // const token = localStorage.getItem('token');
+    // if (token) {
+    //   const authRequest = request.clone({
+    //     headers: request.headers.set('Authorization', `Bearer ${token}`)
+    //   });
+    //   return next.handle(authRequest);
+    // }
     return next.handle(request);
   }
   
