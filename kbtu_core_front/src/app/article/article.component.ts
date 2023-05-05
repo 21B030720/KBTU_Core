@@ -87,13 +87,13 @@ export class ArticleComponent {
   incLikes(){
     this.art.like=this.art.like+1;
     
-    this.albumService.like(this.id);
+    this.albumService.like(this.id).subscribe((tutorial) => { });
     
     console.log(this.liked);
     this.liked=true;
   }
   delete(){
-    this.albumService.deleteTutorial(this.id)
+    this.albumService.deleteTutorial(this.id).subscribe((tutorial) => { });
     this.router.navigateByUrl('')
   }
 }
