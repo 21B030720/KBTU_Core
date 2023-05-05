@@ -58,7 +58,6 @@ export class ArticleComponent {
 
   }
   deleteAlbum(k: number){
-   
   }
   /*
   changeAlbum(title: string, id: number, body: DataLenta){
