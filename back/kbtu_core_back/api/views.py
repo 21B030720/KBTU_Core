@@ -54,9 +54,27 @@ class TutorialClass(APIView):
         author = data.get('author', '')
         category = Category.objects.get(id = id)
         img = data.get('img', '')
-        like = data.get('like', '')
         content = data.get('content', '')
-        tutorial = Tutorial.objects.create(title = title, author = author, category = category, img = img, like = like, content = content)
+        tutorial = Tutorial.objects.create(title = title, author = author, category = category, img = img, like=0, content = content)
+        serializer = TutorialSerializer(tutorial)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def put(self,request, id,format=None):
+        data = json.loads(request.body)
+        print(data)
+        # data1 = request.POST.get('category', None)
+        # print(data1)
+        title = data.get('title', '')
+        author = data.get('author', '')
+        img = data.get('img', '')
+        content = data.get('content', '')
+        u=Tutorial.objects.all()
+        #tutorial = Tutorial.objects.create(title = title, author = author, category = category, img = img, like = like, content = content)
+        tutorial=Tutorial.objects.get(id=id)#.update(title = title, author = author, img = img, content = content)
+        tutorial.title=title
+        tutorial.author=author
+        tutorial.img=img
+        tutorial.content=content
+        tutorial.save()
         serializer = TutorialSerializer(tutorial)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
