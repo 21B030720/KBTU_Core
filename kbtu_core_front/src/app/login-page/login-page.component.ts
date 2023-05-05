@@ -36,7 +36,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin() {
-    debugger
+    // debugger
+    localStorage.getItem('token')
 
     this.accService.onLogin(this.loginObj).subscribe((res: any) =>
     {
@@ -45,6 +46,7 @@ export class LoginPageComponent implements OnInit {
       localStorage.setItem('token', res['access']);
       this.route.navigateByUrl('/');
       this.filterService.setAllowance(true);
+      console.log(localStorage.getItem('token'));
     })
     
   }
