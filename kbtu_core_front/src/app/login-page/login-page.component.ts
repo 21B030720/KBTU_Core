@@ -4,6 +4,7 @@ import { Arslan } from '../models';
 import { MainPageComponent } from '../main-page/main-page.component';
 import { Router } from '@angular/router';
 import { DatabaseConnectionService } from '../database-connection.service';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -15,12 +16,16 @@ import { DatabaseConnectionService } from '../database-connection.service';
 export class LoginPageComponent implements OnInit {
   signupUsers: any[] = [];
 
-  loginObj: any = {
+  signupObj: any = {
     username: '',
     password: '',
   };
+  loginObj: any = {
+    EmailId: '',
+    Password: '',
+  };
 
-  constructor(private _router: Router, private filterService: DatabaseConnectionService) {}
+  constructor(private _router: Router, private filterService: DatabaseConnectionService, private accService: AuthService) {}
 
   ngOnInit(): void {
     const savedUsers = localStorage.getItem('signupUsers');
@@ -30,39 +35,16 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin() {
-    // debugger
-    const isUserExist = this.signupUsers.find(m => m.username == this.loginObj.username && m.password == this.loginObj.password);
-    if(isUserExist != undefined){
-      alert('Welcome!');
-      Arslan();
-      this._router.navigate(['']);
-    } else{
-      alert('Not Welcome!')
-    }
+    debugger
 
-    // For create button
-    this.filterService.setAllowance(true);
+    this.accService.onLogin(this.loginObj).subscribe((res: any) =>
+    {
+      debugger
+      console.log('res', res);
+      localStorage.setItem('token', res.token);
+    })
     
   }
-//   onSubmit() {
-//     this.submitted = true;
 
-//     // stop here if form is invalid
-//     if (this.loginForm.invalid) {
-//         return;
-//     }
-
-//     this.loading = true;
-//     this.authenticationService.login(this.f.username.value, this.f.password.value)
-//         .pipe(first())
-//         .subscribe(
-//             data => {
-//                 this.router.navigate([this.returnUrl]);
-//             },
-//             error => {
-//                 this.error = error;
-//                 this.loading = false;
-//             });
-// }
   
 }
