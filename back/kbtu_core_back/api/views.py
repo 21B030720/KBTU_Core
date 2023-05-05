@@ -60,23 +60,35 @@ class TutorialClass(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     def put(self,request, id,format=None):
         data = json.loads(request.body)
-        print(data)
-        # data1 = request.POST.get('category', None)
-        # print(data1)
-        title = data.get('title', '')
-        author = data.get('author', '')
-        img = data.get('img', '')
-        content = data.get('content', '')
-        u=Tutorial.objects.all()
-        #tutorial = Tutorial.objects.create(title = title, author = author, category = category, img = img, like = like, content = content)
-        tutorial=Tutorial.objects.get(id=id)#.update(title = title, author = author, img = img, content = content)
-        tutorial.title=title
-        tutorial.author=author
-        tutorial.img=img
-        tutorial.content=content
-        tutorial.save()
-        serializer = TutorialSerializer(tutorial)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        try:
+            # data1 = request.POST.get('category', None)
+            # print(data1)
+            title = data.get('title', '')
+            author = data.get('author', '')
+            img = data.get('img', '')
+            content = data.get('content', '')
+            u=Tutorial.objects.all()
+            #tutorial = Tutorial.objects.create(title = title, author = author, category = category, img = img, like = like, content = content)
+            tutorial=Tutorial.objects.get(id=id)#.update(title = title, author = author, img = img, content = content)
+            tutorial.title=title
+            tutorial.author=author
+            tutorial.img=img
+            tutorial.content=content
+            tutorial.save()
+            serializer = TutorialSerializer(tutorial)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Tutorial.DoesNotExist as e:
+            return JsonResponse({'error':'Cannot delete. Tutorial not found'},status=400)
+    
+    def delete(self,request, id,format=None):
+        try:
+            comp=Tutorial.objects.get(id=int(id))
+            comp.delete()
+            return JsonResponse({'deleted':'succesfully'})
+        except Tutorial.DoesNotExist as e:
+            return JsonResponse({'error':'Cannot delete. Tutorial not found'},status=400)
+       
+        
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -86,5 +98,14 @@ def filter(request, id):
     tutorial = Tutorial.objects.filter(category__in = category)
     serializer = TutorialSerializer(tutorial, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def like(request, id):
+    tutorial = Tutorial.objects.get(id=id)
+    tutorial.like=tutorial.like+1
+    tutorial.save()
+    serializer = TutorialSerializer(tutorial)
+    return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 

@@ -19,6 +19,14 @@ export class DatabaseService {
     return this.client.get<Tutorial>(`${this.BASE_URL}/api/tutorial/${id}/`);
   }
   deleteTutorial(id:number){
+    return this.client.delete<Tutorial[]>(`${this.BASE_URL}/api/tutorial/${id}`, {});
+  }
+  updateTutorial(id:number){
+    return this.client.put<Tutorial[]>(`${this.BASE_URL}/api/tutorial/${id}`, {});
+  }
+  like(id:number): Observable<Tutorial>{
+    console.log(this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/like/${id}`,{}));
+    return this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/like/${id}`, {});
   }
   filterTutorialByFaculty(id: number): Observable<Tutorial[]>{
     return this.client.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`, {});
