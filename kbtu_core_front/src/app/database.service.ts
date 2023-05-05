@@ -10,7 +10,8 @@ export class DatabaseService {
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
-  BASE_URL = "http://127.0.0.1:8000";
+  //BASE_URL = "http://127.0.0.1:8000";
+  BASE_URL = "http://localhost:8000";
   constructor(private client: HttpClient) {}
   getTutorials(): Observable<Tutorial[]>{
     return this.client.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial`);
@@ -18,7 +19,15 @@ export class DatabaseService {
   getTutorial(id: number): Observable<Tutorial>{
     return this.client.get<Tutorial>(`${this.BASE_URL}/api/tutorial/${id}/`);
   }
-  deleteTutorial(id:number){
+  deleteTutorial(id:number):Observable<any>{
+    return this.client.delete(`${this.BASE_URL}/api/tutorial/${id}`);
+  }
+  updateTutorial(id:number){
+    return this.client.put<Tutorial[]>(`${this.BASE_URL}/api/tutorial/${id}`, {});
+  }
+  like(id:number): Observable<Tutorial>{
+    console.log(this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/like/${id}`,{}));
+    return this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/like/${id}`, {});
   }
   filterTutorialByFaculty(id: number): Observable<Tutorial[]>{
     return this.client.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`, {});
