@@ -55,6 +55,8 @@ export class CreatorComponent implements OnInit{
     var div1 = document.createElement('div');
     div1.id = `blablabla`;
     // div1.className = "div_4";*/
+
+    
     this.art_out=this.art
     var div1 = document.getElementById("article-text");
     console.log(this.art.contentt)
