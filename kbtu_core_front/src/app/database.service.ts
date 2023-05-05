@@ -25,6 +25,9 @@ export class DatabaseService {
   updateTutorial(id:number){
     return this.client.put<Tutorial[]>(`${this.BASE_URL}/api/tutorial/${id}`, {});
   }
+  createTutorial(title:string,author:string,img:string, content:string): Observable<Tutorial> {
+    return this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/`,{title:title, author:author,img:img,content:content,category:1});
+  }
   like(id:number): Observable<Tutorial>{
     console.log(this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/like/${id}`,{}));
     return this.client.post<Tutorial>(`${this.BASE_URL}/api/tutorial/like/${id}`, {});

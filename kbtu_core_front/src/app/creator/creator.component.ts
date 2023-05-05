@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DatabaseConnectionService } from '../database-connection.service';
 import { contents } from 'contents';
+import { DatabaseService } from '../database.service';
 // import logic.js
 @Component({
   selector: 'app-creator',
@@ -15,6 +16,8 @@ export class CreatorComponent implements OnInit{
     username: '',
     password: '',
   };
+
+  hh: boolean;
 
   art: any={
     title: "",
@@ -31,8 +34,10 @@ export class CreatorComponent implements OnInit{
     contentt:"Article text",
   };
 
-  constructor(private filterService: DatabaseConnectionService)
-  {}
+  constructor(private filterService: DatabaseConnectionService ,private albumService: DatabaseService)
+  {
+    this.hh=false;
+  }
   ngOnInit(): void 
   {
     this.filterService.setAllowance(false);
@@ -61,8 +66,11 @@ export class CreatorComponent implements OnInit{
     var div1 = document.getElementById("article-text");
     console.log(this.art.contentt)
     div1!.innerHTML = this.art.contentt;
+    this.hh=true
 
-
+  }
+  upload(){
+    this.albumService.createTutorial(this.art.title,"me",this.art.imgUrl, this.art.contentt).subscribe(() => { });
   }
   onLogin() {}
 }
