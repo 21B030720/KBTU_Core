@@ -10,12 +10,19 @@ import { Tutorial, Faculty, Category} from './models';
   providedIn: 'root'
 })
 export class AuthService {
-    // private headers = new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //   });
+    private currentUserSubject: BehaviorSubject<any>;
+    // public currentUser: Observable<any>;
+
+    private l = localStorage.getItem('token');
+    headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.onLogin}`,
+      });
     BASE_URL = "http://127.0.0.1:8000";
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient){
+        this.currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('token') as string));
+    }
 
     onLogin(obj: any): Observable<any>{
         // localStorage.setItem('token', this.http.post('http://127.0.0.1:8000/api/token/', obj
@@ -24,8 +31,8 @@ export class AuthService {
         
         
     getTutorials(): Observable<Tutorial[]>{
-        debugger
-        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial`);
+        // debugger
+        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/`, { headers: this.headers});
     }
     getTutorial(id: number): Observable<Tutorial>{
         return this.http.get<Tutorial>(`${this.BASE_URL}/api/tutorial/${id}/`);
@@ -33,10 +40,13 @@ export class AuthService {
     deleteTutorial(id:number){
     }
     filterTutorialByFaculty(id: number): Observable<Tutorial[]>{
-        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`, {});
+        return this.http.get<Tutorial[]>(`${this.BASE_URL}/api/tutorial/filter/${id}`, {headers: this.headers});
     }
     getFaculties(): Observable<Faculty[]>{
         return this.http.get<Faculty[]>(`${this.BASE_URL}/api/faculty/`);
+    }
+    getToken(){
+        return localStorage.getItem('token')
     }
 
   // constructor() { }

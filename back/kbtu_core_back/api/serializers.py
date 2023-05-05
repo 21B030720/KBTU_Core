@@ -13,11 +13,13 @@ class FacultySerializer(serializers.Serializer):
     #     model = Faculty
     #     fields = ('id', 'name', 'icon')
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
     faculty = FacultySerializer()
-    class Meta:
-        model = Category
-        fields = ('id', 'name', 'faculty')
+    # class Meta:
+    #     model = Category
+    #     fields = ('id', 'name', 'faculty')
 
 class TutorialSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
