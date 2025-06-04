@@ -4,6 +4,8 @@ Informational hub for kbtu students (and others) with course tutorials and fresh
 
 ![screenshot](image_2023-05-05_23-24-55.png)
 
+![screenshot](image_2023-05-05_23-25-12.png)
+
 ## Project context
 
 KBTU_Core was created as a Web-development attestation command project.
